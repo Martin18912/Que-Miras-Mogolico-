@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!--Realizado por Martin Castaldi 251514--> 
+  <link rel="shortcut icon" type="imagen/x-icon" href="img/logopestaña2.png">
+    <style>
+        table, th, td {
+          border: 0.5px solid black;
+          padding: 5px;
+          border-spacing: 0px;
+        }
+        </style>
+    <link rel="stylesheet" href="css/main.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale= ">
+    <title>Sistema de Donaciones </title>
+    
+    
+</head>
+<body>
+   <script src="js/clases.js"></script>
+   <div id="todo"> 
+        <div id="izquierda">
+            <div id="sisdonaciones"><h2> Sistema de donaciones</h2></div>
+            <div id="imagen-logo"><img src="img/Logo.png" width="150" alt="logo de la Página"></div>
+            <div id="donantes"><a href="#primerconsulta"> Donantes</a></div>
+            <div id="donaciones"><a href="#segundaconsulta"> Donaciones</a></div>
+            <div id="estadistica"><a href="#terceraconsulta"> Estadistica</a></div>
+            <div id="total-general">
+              <div id="total-general2">Total general </div>
+              <div id="preciototal"><span id="montoTotal"></span></div>
+            </div>
+            <div id="donacion-mayor">
+              <div id="donacion-mayor2">Monto donacion mayor</div>
+              <div id="mayordonacion"><span id="montoMayor"></span></div>
+            </div>           
+        </div> 
+        <div id="derecha">
+           <div id="titulo1"><h2>Registro de Donantes</h2> </div>
+             <div id="primerconsulta"> 
+             <form onsubmit="event.preventDefault();onFormSubmit2();" autocomplete="off">
+                <label >Nombre </label>
+                <input  type="text" placeholder="Nombre" id="nombre" maxlength="20" />
+                <label >Direccion </label>
+                <input  type="text" placeholder="Direccion" id="direccion" maxlength="20" />
+                <label >Telefono </label>
+                <input  type="text" placeholder="Telefono" id="telefono" maxlength="20" />
+                <input type="submit" value="Agregar">
+              </form>
+            </div>
+            <div id="titulo2"><h2>Registro de Donaciones</h2></div>
+            <div id="segundaconsulta">
+              <form onsubmit="event.preventDefault();onFormSubmit1();" autocomplete="off">
+                <label >Donante</label>
+                <select name="donantes3" id="select" >
+                  
+                </select>
+                <label for="modo">Modo</label>
+                <select name="modo" id="modo">
+                  <option value="efectivo">Efectivo</option>
+                  <option value="transferencia">Transferencia</option>
+                  <option value="canje">Canje</option>
+                  <option value="mercaderia">Mercaderia</option>
+                  <option value="cheque">Cheque</option>
+                  <option value="otros">Otros</option>
+                </select>
+                <label >Monto </label>
+                <input  type="text" id="monto" placeholder="$" name="monto" size="4" />
+                <label >Comentarios </label>
+                <input  type="text" name="comentarios" size="20" maxlength="20" id="comentario" placeholder="Escriba un Comentario"/>
+                <input type="submit" value="Agregar" >
+                </form> 
+            </div>
+            <div id="titulo3"><h3>Donaciones Registradas</h3></div>
+            <div id="terceraconsulta">
+                <label for="orden">Orden:</label>
+                <input type="radio" id="orden" name="orden" value="1" checked onchange="ordenMonto()">
+                <label >Monto decreciente</label>
+                <input type="radio" id="orden2" name="orden" value="1" onchange="ordenName()">
+                <label >Nombre donante creciente</label>
+                <table class="list" id="employeeList" style="width: 100%;">
+                
+                       
+                  <thead>
+                    <tr>
+                        <th>Donante</th>
+                        <th>Modo</th>
+                        <th>Monto</th>
+                        <th>Comentario</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>                 
+                </table>
+                <label for="resaltar">Resaltar filas:</label>
+                <input type="checkbox" id="resaltar" onchange="filasResaltar()" > 
+                <label >de monto: </label>
+                <input  type="text" id="resaltarmonto" placeholder="0" size="4" onkeyup="filasResaltar()"/>
+            </div>
+            <div id="titulo4"><h2>Estadisticas</h2></div>
+            <div id="cuartaconsulta">
+                <p>Cantidad total de donaciones: <span id=cantidadDon>0</span></p>
+                <br>
+                <p>Promedio por donacion: <span id=promedioDon>0</span></p>
+                <br>
+                <p>Donante que mas veces dono: <span id=mayorDon></span></p>
+            </div>
+            <div id="titulo-grafica"><h2>Tipo de las Donaciones</h2></div>
+            <div id="piechart" class="chart"></div>
+            
+        </div>
+        <footer id="abajo">
+            <div id="abajo2"> Cátedra de Programación- Programación 1 - 1er.Semestre 2021 Martin Castaldi 251514 </div>
+        </footer>
+   </div>
+   
+   <script src="js/script.js"></script>
+   <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+       google.charts.load("current", { packages: ["corechart"] });
+       google.charts.setOnLoadCallback(drawChart);
+
+       function drawChart() {
+          let tipos = obtenerModosDonacion();
+             var data = google.visualization.arrayToDataTable([
+                ["Modo", "Cantidad de donaciones"],
+                ["Efectivo", tipos.efectivo],
+                ["Transferencia", tipos.transferencia],
+                ["Canje", tipos.canje],
+                ["Mercadería", tipos.mercaderia],
+                ["Cheque", tipos.cheque],
+                ["Otros", tipos.otros],
+             ]);
+
+             var options = {
+                backgroundColor: '#9A9494',
+                is3D: true,
+             };
+
+
+             var chart = new google.visualization.PieChart(document.getElementById("piechart"));
+
+             chart.draw(data, options);
+             
+             
+             document.getElementById("piechart").classList.add("chart");
+             }
+             
+    </script>
+     
+</body>
+</html>

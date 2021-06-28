@@ -1,0 +1,187 @@
+/** Realizado por Martin Castaldi 251514 */
+*{ 
+    padding: 0;
+    margin: 0;
+    font-family: Arial;
+}
+#todo{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 15fr 1fr;
+    width: 100%;
+    min-height: 100vh;
+}
+#izquierda{
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    background-color: #C8C1C0;
+    display: flex;
+    flex-direction: column;
+    
+}
+#derecha{
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    background-color: #9A9494;
+    display: flex;
+    flex-direction: column;
+}
+#imagen-logo{
+    margin: 5% 24%;
+}
+#sisdonaciones{
+   margin: 10px ; 
+}
+a{
+    margin-top: 200px;
+}
+#donantes{
+    height: 42px;
+    width: 80%;
+    background-color: #6C7AFF;
+    border:3px solid #212A92;
+    border-radius: 15px;
+    text-align: center;
+    margin: 3% 4% 2%;
+    
+}
+
+#donaciones{
+    height: 42px;
+    width: 80%;
+    background-color: #6C7AFF;
+    border:3px solid #212A92; 
+    border-radius: 15px;
+    text-align: center; 
+    margin: 3% 4% 2%; 
+    
+}
+#estadistica{
+    height: 42px;
+    width: 80%;
+    background-color: #6C7AFF;
+    border:  3px solid #212A92 ; 
+    border-radius: 15px;
+    text-align: center;
+    margin: 3% 4% 2%;
+}
+#total-general{
+    width: 80%;
+    height: 55px;
+    background-color: #3C46AA;
+    position: relative;
+    margin: 3% 4% 2%;
+    border: 5px double#C8C1C0 ;
+    border-radius: 25px;
+    color: white;
+    text-align: center;
+}
+#total-general2{
+    width: 115px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    
+}
+#donacion-mayor{
+    width: 80%;
+    height: 55px;
+    background-color: #3C46AA;
+    position: relative;
+    margin: 3% 4% 2%;
+    border: 5px double#C8C1C0 ;
+    border-radius: 25px;
+    color: white;
+    text-align: center;
+}
+#donacion-mayor2{
+    width: 204px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+#abajo{
+    background-color: #505051;
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+#abajo2{
+    padding-top: 1%;
+}
+#titulo1{
+   margin-left: 5%;
+   margin-top: 2%;
+   margin-right: 5%;     
+
+}
+#primerconsulta{
+    margin-left: 5%;
+   margin-top: 2%;
+   margin-right: 5%;
+    
+}
+#titulo2{
+    margin-left: 5%;
+    margin-top: 2%; 
+    margin-right: 5%;
+}
+#segundaconsulta{
+    margin-left: 5%;
+   margin-top: 2%;
+   margin-right: 5%;
+}
+#titulo3{
+    margin-left: 5%;
+   margin-top: 2%;
+   margin-right: 5%;
+}
+#terceraconsulta{
+    margin-left: 5%;
+   margin-top: 2%;
+   margin-right: 5%;
+}
+#titulo4{
+    margin-left: 5%;
+   margin-top: 2%;
+   margin-right: 5%;
+}
+#cuartaconsulta{
+    margin-left: 5%;
+   margin-top: 2%;
+   margin-right: 5%;
+   margin-bottom: 5%;
+
+}
+.chart {
+    
+    margin: auto 3% 5%;
+    width: 80%;
+    height: 40vh;
+    
+}
+#titulo-grafica{
+    margin-left: 25%;
+    
+}
+
+
+
+@media (max-width: 700px) {
+    #todo{
+        display: flex;
+        flex-direction: column;
+    }
+    #imagen-logo{
+        margin: 4% 20% 4% 35%;
+    }
+    #sisdonaciones{
+        margin: 10px ;
+        text-align: center; 
+     }
+}
+
